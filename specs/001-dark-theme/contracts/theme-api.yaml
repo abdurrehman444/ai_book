@@ -1,0 +1,78 @@
+# Theme API Contract
+
+## Theme Management Endpoints
+
+### GET /api/theme/current
+Get the user's currently selected theme preference
+
+**Response**:
+```json
+{
+  "theme": "light|dark|system",
+  "timestamp": "ISO 8601 datetime"
+}
+```
+
+### POST /api/theme/switch
+Switch the user's theme preference
+
+**Request**:
+```json
+{
+  "theme": "light|dark"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "theme": "light|dark",
+  "timestamp": "ISO 8601 datetime"
+}
+```
+
+## Client-Side Interface
+
+### Theme Toggle Component
+```typescript
+interface ThemeToggle {
+  getCurrentTheme(): 'light' | 'dark' | 'system';
+  switchTheme(theme: 'light' | 'dark'): void;
+  applyTheme(theme: 'light' | 'dark'): void;
+  persistTheme(theme: 'light' | 'dark'): void;
+}
+```
+
+### Theme Configuration
+```typescript
+interface ThemeConfig {
+  themeName: 'light' | 'dark';
+  colors: {
+    backgroundColor: string;
+    textColor: string;
+    accentColor: string;
+    borderColor: string;
+    codeBackground: string;
+    codeText: string;
+  };
+}
+```
+
+## CSS Custom Properties Contract
+
+### Required CSS Variables
+All UI components must use these CSS variables for consistent theming:
+
+- `--background-color`: Background color for containers
+- `--text-color`: Primary text color
+- `--accent-color`: Links and interactive elements
+- `--border-color`: Border colors
+- `--code-background`: Code block background
+- `--code-text`: Code text color
+
+## Validation Requirements
+- All text must maintain WCAG AA contrast ratios (minimum 4.5:1)
+- Theme switch must be instantaneous without page reload
+- Theme preference must persist across browser sessions
+- System preference for dark mode must be respected when no user preference exists

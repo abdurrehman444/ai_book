@@ -1,0 +1,181 @@
+# CSS Custom Properties Contract for Homepage Redesign
+
+## Overview
+This contract defines the CSS custom properties (CSS variables) that will be used for the homepage redesign to ensure consistency and maintainability.
+
+## Typography Variables
+
+### Font Families
+- `--ifm-font-family-base`: Primary font family for body text
+  - Value: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+  - Usage: All body text elements
+  - Rationale: System fonts for performance and accessibility
+
+- `--ifm-font-family-monospace`: Monospace font for code elements
+  - Value: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace
+  - Usage: Code blocks, inline code
+  - Rationale: Consistent code presentation
+
+### Font Sizes
+- `--ifm-font-size-base`: Base font size
+  - Value: 16px (or 1rem)
+  - Usage: Default body text
+  - Rationale: Accessibility-compliant base size
+
+- `--ifm-h1-font-size`: H1 heading size
+  - Value: 2.5rem (40px)
+  - Usage: Main page title
+  - Rationale: Clear visual hierarchy
+
+- `--ifm-h2-font-size`: H2 heading size
+  - Value: 2rem (32px)
+  - Usage: Section headings
+  - Rationale: Subsection organization
+
+- `--ifm-h3-font-size`: H3 heading size
+  - Value: 1.5rem (24px)
+  - Usage: Subsection headings
+  - Rationale: Detailed content organization
+
+## Color Variables
+
+### Primary Colors
+- `--ifm-color-primary`: Primary brand color
+  - Value: #2563eb (blue-600 equivalent)
+  - Usage: Links, primary buttons, accents
+  - Rationale: Professional blue for academic context
+
+- `--ifm-color-primary-dark`: Darker primary color
+  - Value: #1d4ed8 (blue-700 equivalent)
+  - Usage: Hover states, active states
+  - Rationale: Consistent color variations
+
+### Text Colors
+- `--ifm-color-emphasis-0`: High-emphasis text
+  - Value: #1f2937 (gray-800 equivalent)
+  - Usage: Main content text
+  - Rationale: Good contrast for readability
+
+- `--ifm-color-emphasis-600`: Low-emphasis text
+  - Value: #6b7280 (gray-500 equivalent)
+  - Usage: Secondary text, captions
+  - Rationale: Appropriate contrast for secondary content
+
+## Spacing Variables
+
+### Base Spacing Unit
+- `--ifm-spacing-unit`: Base spacing unit
+  - Value: 1rem (16px)
+  - Usage: Foundation for all spacing calculations
+  - Rationale: Consistent spacing system
+
+### Spacing Scale
+- `--ifm-global-spacing`: Global spacing multiplier
+  - Value: 1rem
+  - Usage: Standard component spacing
+  - Rationale: Consistent rhythm
+
+- `--ifm-global-spacing-double`: Double spacing
+  - Value: 2rem
+  - Usage: Larger section separations
+  - Rationale: Clear content divisions
+
+## Layout Variables
+
+### Container Widths
+- `--ifm-container-width`: Maximum container width
+  - Value: 1200px
+  - Usage: Content container maximum width
+  - Rationale: Readable line lengths
+
+- `--ifm-container-width-xl`: Extra large container width
+  - Value: 1400px
+  - Usage: Wider layouts when appropriate
+  - Rationale: Flexibility for wider screens
+
+## Breakpoint Variables
+
+### Responsive Breakpoints
+- `--ifm-breakpoint-xs`: Extra small breakpoint
+  - Value: 0
+  - Usage: Mobile-first base styles
+  - Rationale: Mobile-first approach
+
+- `--ifm-breakpoint-sm`: Small breakpoint
+  - Value: 600px
+  - Usage: Small mobile devices
+  - Rationale: Common mobile width
+
+- `--ifm-breakpoint-md`: Medium breakpoint
+  - Value: 996px
+  - Usage: Tablets and small desktops
+  - Rationale: Tablet portrait orientation
+
+- `--ifm-breakpoint-lg`: Large breakpoint
+  - Value: 1200px
+  - Usage: Desktop layouts
+  - Rationale: Standard desktop width
+
+- `--ifm-breakpoint-xl`: Extra large breakpoint
+  - Value: 1440px
+  - Usage: Large desktop displays
+  - Rationale: Extra wide displays
+
+## Component-Specific Variables
+
+### Card Component
+- `--ifm-card-background-color`: Card background
+  - Value: #ffffff
+  - Usage: Content cards and containers
+  - Rationale: Clean, readable backgrounds
+
+- `--ifm-card-border-radius`: Card corner radius
+  - Value: 0.5rem
+  - Usage: Card element corners
+  - Rationale: Subtle rounded corners
+
+### Button Component
+- `--ifm-button-font-weight`: Button font weight
+  - Value: 600
+  - Usage: Button text emphasis
+  - Rationale: Clear button hierarchy
+
+## Accessibility Variables
+
+### Focus Indicators
+- `--ifm-focus-ring-color`: Focus ring color
+  - Value: #2563eb
+  - Usage: Keyboard focus indicators
+  - Rationale: Clear focus visibility
+
+- `--ifm-focus-ring-width`: Focus ring width
+  - Value: 2px
+  - Usage: Focus indicator thickness
+  - Rationale: Visible but not overwhelming
+
+## Compliance Requirements
+
+### Accessibility Compliance
+- All color combinations must maintain minimum 4.5:1 contrast ratio
+- Font sizes must not be smaller than 16px for normal text
+- Interactive elements must have visible focus states
+- All variables must support high contrast mode when applicable
+
+### Performance Requirements
+- Variables should be efficiently calculated to avoid rendering performance issues
+- Values should be cacheable and reusable across components
+- System fonts preferred over web fonts for performance
+
+## Change Management
+
+### Versioning
+- Variables are versioned with the design system
+- Breaking changes require major version increments
+- New variables can be added in minor versions
+- Deprecated variables should be maintained for 2 major versions
+
+### Testing Requirements
+- All color combinations must be tested with accessibility tools
+- Responsive behavior must be verified at all breakpoints
+- Cross-browser compatibility must be maintained
+- Performance impact of new variables must be assessed

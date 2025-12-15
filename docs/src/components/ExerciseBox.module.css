@@ -1,0 +1,30 @@
+.exerciseBox {
+  background-color: var(--color-exercise-bg, #fff3cd);
+  border-left: 4px solid var(--color-exercise-border, #ffc107);
+  padding: 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 1.5rem 0;
+}
+
+.exerciseList {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+}
+
+.exerciseItem {
+  margin: 0.75rem 0;
+  line-height: 1.5;
+}
+
+.exerciseBox h3 {
+  margin-top: 0;
+  color: var(--color-exercise-text, #856404);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+@media (max-width: 996px) {
+  .exerciseBox {
+    padding: 1rem;
+  }
+}

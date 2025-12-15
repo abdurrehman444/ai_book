@@ -1,0 +1,66 @@
+/**
+ * Additional Dark Theme Styles
+ * Specific overrides for improved dark mode readability
+ */
+
+[data-theme='dark'] {
+  /* Ensure proper contrast for all text elements */
+  --ifm-color-emphasis-0: var(--color-emphasis-0);
+  --ifm-color-emphasis-100: var(--color-emphasis-100);
+  --ifm-color-emphasis-200: var(--color-emphasis-200);
+  --ifm-color-emphasis-300: var(--color-emphasis-300);
+  --ifm-color-emphasis-400: var(--color-emphasis-400);
+  --ifm-color-emphasis-500: var(--color-emphasis-500);
+  --ifm-color-emphasis-600: var(--color-emphasis-600);
+  --ifm-color-emphasis-700: var(--color-emphasis-700);
+}
+
+/* Ensure proper contrast in textbook content sections */
+[data-theme='dark'] .learning-objectives {
+  background-color: var(--color-learning-objectives-bg);
+  border-left-color: var(--color-learning-objectives-border);
+}
+
+[data-theme='dark'] .learning-objectives h3 {
+  color: var(--color-learning-objectives-text);
+}
+
+[data-theme='dark'] .exercises {
+  background-color: var(--color-exercise-bg);
+  border-left-color: var(--color-exercise-border);
+}
+
+[data-theme='dark'] .exercises h3 {
+  color: var(--color-exercise-text);
+}
+
+[data-theme='dark'] .assessment {
+  background-color: var(--color-assessment-bg);
+  border-left-color: var(--color-assessment-border);
+}
+
+[data-theme='dark'] .assessment h3 {
+  color: var(--color-assessment-text);
+}
+
+/* Code block styling in dark mode */
+[data-theme='dark'] .robocode {
+  background-color: var(--color-code-bg);
+  color: var(--color-code-text);
+}
+
+/* Ensure all text has sufficient contrast in dark mode */
+[data-theme='dark'] .important-concept {
+  border-color: #f87171; /* Lighter red for better contrast in dark mode */
+  background-color: #450a0a; /* Darker red background */
+}
+
+[data-theme='dark'] .important-concept h3 {
+  color: #fca5a5; /* Lighter red text for better contrast */
+}
+
+/* Improve readability for multimodal diagrams in dark mode */
+[data-theme='dark'] .multimodal-diagram {
+  background-color: var(--ifm-color-emphasis-600);
+  border-color: var(--ifm-color-emphasis-400);
+}

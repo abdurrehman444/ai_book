@@ -1,0 +1,328 @@
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Textbook API
+  description: API for accessing textbook content, exercises, and assessments
+  version: 1.0.0
+  contact:
+    name: Textbook Development Team
+    email: textbook@physical-ai.org
+
+servers:
+  - url: https://api.physical-ai-textbook.com/v1
+    description: Production server
+
+paths:
+  /modules:
+    get:
+      summary: Get all textbook modules
+      description: Retrieve a list of all available modules in the textbook
+      responses:
+        '200':
+          description: List of modules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Module'
+        '400':
+          description: Invalid request parameters
+
+  /modules/{moduleId}:
+    get:
+      summary: Get module details
+      description: Retrieve details about a specific module
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          description: ID of the module to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Module details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '404':
+          description: Module not found
+
+  /modules/{moduleId}/chapters:
+    get:
+      summary: Get chapters in a module
+      description: Retrieve all chapters within a specific module
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          description: ID of the module
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of chapters in the module
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chapters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Module not found
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get chapter details
+      description: Retrieve details about a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          description: ID of the chapter to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chapter details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+
+  /exercises:
+    get:
+      summary: Get all practical exercises
+      description: Retrieve a list of all available practical exercises
+      parameters:
+        - name: moduleId
+          in: query
+          required: false
+          description: Filter exercises by module ID
+          schema:
+            type: string
+        - name: difficulty
+          in: query
+          required: false
+          description: Filter exercises by difficulty level
+          schema:
+            type: string
+            enum: [beginner, intermediate, advanced]
+      responses:
+        '200':
+          description: List of practical exercises
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exercises:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PracticalExercise'
+        '400':
+          description: Invalid request parameters
+
+  /assessments:
+    get:
+      summary: Get assessment methods
+      description: Retrieve a list of assessment methods available in the textbook
+      responses:
+        '200':
+          description: List of assessment methods
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  assessments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AssessmentMethod'
+        '400':
+          description: Invalid request parameters
+
+components:
+  schemas:
+    Module:
+      type: object
+      required:
+        - moduleId
+        - title
+        - description
+        - order
+      properties:
+        moduleId:
+          type: string
+          description: Unique identifier for the module
+          example: "module-1-ros2"
+        title:
+          type: string
+          description: Title of the module
+          example: "The Robotic Nervous System (ROS 2)"
+        description:
+          type: string
+          description: Brief description of the module's content
+          example: "Introduction to ROS 2 architecture and package development"
+        order:
+          type: integer
+          description: Sequential number in the 13-week course schedule
+          example: 1
+        duration:
+          type: integer
+          description: Estimated duration in weeks
+          example: 2
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: List of prerequisite modules or knowledge areas
+          example: ["basic-programming", "linux-fundamentals"]
+        learningOutcomes:
+          type: array
+          items:
+            type: string
+          description: List of measurable learning outcomes for the module
+          example: ["explain-ros2-architecture", "create-ros2-package"]
+
+    Chapter:
+      type: object
+      required:
+        - chapterId
+        - title
+        - moduleId
+        - order
+      properties:
+        chapterId:
+          type: string
+          description: Unique identifier for the chapter
+          example: "chapter-1-1"
+        title:
+          type: string
+          description: Title of the chapter
+          example: "Introduction to ROS 2 Architecture"
+        moduleId:
+          type: string
+          description: Reference to the parent module
+          example: "module-1-ros2"
+        order:
+          type: integer
+          description: Sequential number within the module
+          example: 1
+        estimatedReadingTime:
+          type: integer
+          description: Estimated time to complete the chapter in minutes
+          example: 45
+        topics:
+          type: array
+          items:
+            type: string
+          description: List of key topics covered in the chapter
+          example: ["nodes", "topics", "services", "actions"]
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: Specific learning objectives for the chapter
+          example: ["understand-ros2-middleware", "create-simple-node"]
+
+    PracticalExercise:
+      type: object
+      required:
+        - exerciseId
+        - title
+        - chapterId
+        - difficulty
+      properties:
+        exerciseId:
+          type: string
+          description: Unique identifier for the exercise
+          example: "exercise-1-1-ros2-publisher"
+        title:
+          type: string
+          description: Title of the practical exercise
+          example: "Create a ROS 2 Publisher Node"
+        chapterId:
+          type: string
+          description: Reference to the parent chapter
+          example: "chapter-1-1"
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Level of difficulty
+          example: "beginner"
+        estimatedCompletionTime:
+          type: integer
+          description: Estimated time to complete the exercise in minutes
+          example: 60
+        requiredHardware:
+          type: array
+          items:
+            type: string
+          description: List of required hardware components
+          example: ["pc-with-ros2"]
+        requiredSoftware:
+          type: array
+          items:
+            type: string
+          description: List of required software tools
+          example: ["ros2-humble", "python3", "rclpy"]
+        objectives:
+          type: array
+          items:
+            type: string
+          description: List of objectives the exercise aims to achieve
+          example: ["create-publisher-node", "publish-custom-messages"]
+        steps:
+          type: array
+          items:
+            type: string
+          description: Detailed steps for completing the exercise
+          example: ["create-package", "write-publisher-code", "build-and-run"]
+        expectedOutcome:
+          type: string
+          description: Description of what the student should achieve
+          example: "A working ROS 2 publisher node that publishes messages to a topic"
+
+    AssessmentMethod:
+      type: object
+      required:
+        - assessmentId
+        - title
+        - type
+      properties:
+        assessmentId:
+          type: string
+          description: Unique identifier for the assessment method
+          example: "assessment-1-practical"
+        title:
+          type: string
+          description: Title of the assessment method
+          example: "Practical Demonstration"
+        type:
+          type: string
+          description: Type of assessment
+          example: "practical demonstration"
+        associatedLearningOutcomes:
+          type: array
+          items:
+            type: string
+          description: List of learning outcomes this assessment validates
+          example: ["create-ros2-package", "implement-communication-patterns"]
+        criteria:
+          type: string
+          description: Specific criteria for successful completion
+          example: "Student successfully creates and runs a ROS 2 package with publisher and subscriber nodes"
+        audience:
+          type: string
+          description: Target audience
+          example: "students"

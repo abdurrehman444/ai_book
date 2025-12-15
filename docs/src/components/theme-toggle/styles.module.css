@@ -1,0 +1,38 @@
+/**
+ * CSS module for theme toggle component
+ */
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--ifm-color-emphasis-500);
+  color: var(--ifm-color-emphasis-0);
+  border: 1px solid var(--ifm-color-emphasis-400);
+  cursor: pointer;
+  transition: all var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+.themeToggle:hover {
+  background-color: var(--ifm-color-emphasis-400);
+  transform: scale(1.05);
+}
+
+.themeToggle:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] .themeToggle {
+  background-color: var(--ifm-color-emphasis-600);
+  color: var(--ifm-color-emphasis-0);
+  border-color: var(--ifm-color-emphasis-500);
+}
+
+[data-theme='dark'] .themeToggle:hover {
+  background-color: var(--ifm-color-emphasis-500);
+}
