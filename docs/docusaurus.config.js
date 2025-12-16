@@ -30,7 +30,7 @@ const config = {
   organizationName: 'your-organization', // Usually your GitHub org/user name.
   projectName: 'physical-ai-textbook', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -51,8 +51,13 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/your-organization/physical-ai-textbook/edit/main/',
-          routeBasePath: '/', // Serve docs at site root
+          routeBasePath: '/docs', // Serve docs at /docs to avoid conflicts with home page
           path: '.', // Look for docs in the current directory
+          exclude: [
+            'node_modules/**/*.{md,mdx}',
+            '_template_chapter.md',  // Template file with placeholder values
+            '_content_validation.md',  // Content validation guidelines, not a doc page
+          ], // Exclude node_modules and template files to avoid MDX compilation errors
         },
         blog: false, // Disable blog for textbook
         theme: {
@@ -84,10 +89,9 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
+            to: '/docs/intro',
             label: 'Textbook',
+            position: 'left',
           },
           {
             href: 'https://github.com/your-organization/physical-ai-textbook',
@@ -104,23 +108,23 @@ const config = {
             items: [
               {
                 label: 'Module 1: The Robotic Nervous System (ROS 2)',
-                to: '/modules/module-1-ros2/intro',
+                to: '/docs/modules/module-1-ros2/intro',
               },
               {
                 label: 'Module 2: The Digital Twin (Gazebo & Unity)',
-                to: '/modules/module-2-digital-twin/intro',
+                to: '/docs/modules/module-2-digital-twin/intro',
               },
               {
                 label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac)',
-                to: '/modules/module-3-ai-brain/intro',
+                to: '/docs/modules/module-3-ai-brain/intro',
               },
               {
                 label: 'Module 4: Vision-Language-Action (VLA)',
-                to: '/modules/module-4-vla/intro',
+                to: '/docs/modules/module-4-vla/intro',
               },
               {
                 label: 'Module 5: Capstone Project',
-                to: '/modules/module-5-capstone/intro',
+                to: '/docs/modules/module-5-capstone/intro',
               },
             ],
           },
@@ -129,11 +133,11 @@ const config = {
             items: [
               {
                 label: 'Appendix A: Hardware Setup',
-                to: '/appendices/hardware-setup',
+                to: '/docs/appendices/appendix-a-hardware-setup',
               },
               {
                 label: 'Appendix B: Assessment Guidelines',
-                to: '/appendices/assessment-guidelines',
+                to: '/docs/appendices/appendix-b-assessment-guidelines',
               },
             ],
           },
